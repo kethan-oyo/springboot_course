@@ -1,6 +1,8 @@
 package com.stacksimplify.restservices.Entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "user")
@@ -11,9 +13,11 @@ public class User {
     private Long id;
 
     @Column(name = "USER_NAME", length = 50, nullable = false, unique = true)
+    @NotEmpty(message = "Username is mandetory. please provide username")
     private String username;
 
     @Column(name = "FIRST_NAME", length = 50, nullable = false)
+    @Size(min = 2, message = "First name should have atleast 2 chareccters")
     private String first_name;
 
     @Column(name = "LAST_NAME", length = 50, nullable = false)
