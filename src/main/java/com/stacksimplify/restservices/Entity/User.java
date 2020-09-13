@@ -3,6 +3,7 @@ package com.stacksimplify.restservices.Entity;
 import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.hateoas.RepresentationModel;
 
 import javax.persistence.*;
@@ -13,35 +14,43 @@ import java.util.List;
 @Entity
 @Table(name = "user")
 //@JsonIgnoreProperties({"first_name","role"}) - static filtering
-@JsonFilter("userFilter")
+//@JsonFilter("userFilter") - used for mapping jackson section
 public class User extends RepresentationModel {
 
     @Id
     @GeneratedValue
+    @JsonView(Views.External.class)
     private Long id;
 
+    @NotEmpty(message = "Username is Mandatory field. Please provide username")
     @Column(name = "USER_NAME", length = 50, nullable = false, unique = true)
-    @NotEmpty(message = "Username is mandetory. please provide username")
+    @JsonView(Views.External.class)
     private String username;
 
+    @Size(min = 2, message = "FirstName should have atleast 2 characters")
     @Column(name = "FIRST_NAME", length = 50, nullable = false)
-    @Size(min = 2, message = "First name should have atleast 2 chareccters")
+    @JsonView(Views.External.class)
     private String first_name;
 
     @Column(name = "LAST_NAME", length = 50, nullable = false)
+    @JsonView(Views.External.class)
     private String last_name;
 
-    @Column(name = "EMAIL", length = 50, nullable = false)
+    @Column(name = "EMAIL_ADDRESS", length = 50, nullable = false)
+    @JsonView(Views.External.class)
     private String email;
 
     @Column(name = "ROLE", length = 50, nullable = false)
+    @JsonView(Views.Internal.class)
     private String role;
 
     @Column(name = "SSN", length = 50, nullable = false, unique = true)
-  //  @JsonIgnore - Ignores this attribute static filtering
+    //@JsonIgnore -- Static Filtering @JsonIgnore
+    @JsonView(Views.Internal.class)
     private String ssn;
 
     @OneToMany(mappedBy = "user")
+    @JsonView(Views.Internal.class)
     private List<Order> orders;
 
     public User() {
