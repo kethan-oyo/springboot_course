@@ -1,5 +1,7 @@
 package com.stacksimplify.restservices.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.hateoas.RepresentationModel;
 
 import javax.persistence.*;
@@ -9,6 +11,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "user")
+//@JsonIgnoreProperties({"first_name","role"}) - static filtering
 public class User extends RepresentationModel {
 
     @Id
@@ -33,6 +36,7 @@ public class User extends RepresentationModel {
     private String role;
 
     @Column(name = "SSN", length = 50, nullable = false, unique = true)
+  //  @JsonIgnore - Ignores this attribute static filtering
     private String ssn;
 
     @OneToMany(mappedBy = "user")
