@@ -1,6 +1,6 @@
-insert into user values (101, 'gk@oy.com', 'kethan', 'gaddam', 'admin', 'ssn101', 'gk');
-insert into user values (102, 'gck@oy.com', 'kethann', 'gaddamn', 'admin', 'ssn102', 'gkm');
-insert into user values (103, 'gcck@oy.com', 'kethannn', 'gaddamm', 'admin', 'ssn103', 'gkn');
+insert into user values (101,'abc', 'gk@oy.com', 'kethan', 'gaddam', 'admin', 'ssn101', 'gk');
+insert into user values (102,'def', 'gck@oy.com', 'kethann', 'gaddamn', 'admin', 'ssn102', 'gkm');
+insert into user values (103,'ghi', 'gcck@oy.com', 'kethannn', 'gaddamm', 'admin', 'ssn103', 'gkn');
 insert into orders values (2001, 'order11', 101);
 insert into orders values (2002, 'order12', 101);
 insert into orders values (2003, 'order13', 101);
